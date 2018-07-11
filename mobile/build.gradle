@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId 'cn.edu.fudan.xuan.mytimemanagement'
+        minSdkVersion 23
+        targetSdkVersion 23
+        versionCode 6
+        versionName "1.32b"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        jackOptions {
+//            enabled true
+//
+//        }
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    wearApp project(':wear')
+    gradlew assembleDebug --infocompile files ('src/main/java/TencentMapSDK_Raster_v_1.2.8_e45bcd0.jar')
+    //gradlew assembleDebug" --infocompile files('/Users/liam/Desktop/PomeloTiming/mobile/src/main/java/TencentMapSDK_Raster_v_1.2.8_e45bcd0.jar')
+    //TencentMapSDK_Raster_v_1.2.8_e45bcd0
+    compile 'com.google.android.gms:play-services:7.8.87'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
